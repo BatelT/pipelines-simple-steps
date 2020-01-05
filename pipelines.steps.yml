@@ -18,6 +18,6 @@ pipelines:
             - name: myAppRepo
           integrations:
             - name: slack    
-          execution:
-            - send_notification notifySlack --text "Docker build completed for $res_app_gitRepo_path at $res_app_gitRepo_gitProvider_url"
+            execution:
+              - send_notification notifySlack --text "Docker build completed for $res_app_gitRepo_path at $res_app_gitRepo_gitProvider_url"
      
