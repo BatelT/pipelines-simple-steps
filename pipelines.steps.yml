@@ -16,6 +16,8 @@ pipelines:
         configuration:
           inputResources:
             - name: myAppRepo
+        integrations:
+            - name: slack    
         execution:
           onExecute:
             - echo $MY_MESSAGE
