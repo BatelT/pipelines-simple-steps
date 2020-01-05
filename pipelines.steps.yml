@@ -20,5 +20,5 @@ pipelines:
             - name: slack    
         execution:
           onExecute:
-            - send_notification notifySlack --text "Hello"
+            - send_notification slack --text "Hello"
      
