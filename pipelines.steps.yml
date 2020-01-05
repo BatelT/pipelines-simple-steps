@@ -22,3 +22,4 @@ pipelines:
           onExecute:
             - echo $MY_MESSAGE
             - echo “running CI for master”
+            - send_notification notifySlack --text "built docker image 123.12.111.173:8081/docker-local/demo:$PIPELINE_NAME.$RUN_NUMBER"
