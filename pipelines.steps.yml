@@ -16,3 +16,9 @@ pipelines:
         configuration:
           inputResources:
             - name: myAppRepo
+          integrations:
+            - name: slack    
+        execution:
+          onExecute:
+            - send_notification slack --text "Hello"
+     
