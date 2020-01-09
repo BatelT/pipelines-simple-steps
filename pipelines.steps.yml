@@ -16,3 +16,7 @@ pipelines:
         configuration:
           inputResources:
             - name: myAppRepo
+        execution:
+          onExecute:
+            - echo $MY_MESSAGE
+            - echo “running CI for master”
