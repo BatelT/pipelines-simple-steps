@@ -19,6 +19,7 @@ pipelines:
           integrations:
             - name: slack    
         execution:
-          onExecute:
+          onComplete:
             - send_notification slack --text "Hello"
-     
+          onFailure:
+            - send_notification slack --text "The build failed"
