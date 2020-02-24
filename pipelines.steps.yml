@@ -1,25 +1,47 @@
 resources:
-  - name: myAppRepo
-    type: GitRepo
+  - name: app
+    type: github
     configuration:
-      gitProvider: github
+      gitProvider: myGitHub
       path: BatelT/pipelines-simple-steps
+      branches:
+        include: master
 pipelines:
-  - name: pipeline_hello_world
-    configuration:
-      environmentVariables:
-        readOnly:
-          MY_MESSAGE: '"Hello World!"'
+  - name: barebones_pipeline
     steps:
-      - name: step_1
-        type: Bash
-        configuration:
-          inputResources:
-            - name: myAppRepo
-          integrations:
-            - name: slack    
-        execution:
-          onComplete:
-            - send_notification slack --text "Hello"
-          onFailure:
-            - send_notification slack --text "The build failed"
+    - name: step_1
+      type: Bash
+      configuration:
+        inputResources:
+          - name: app
+      execution:
+        onExecute:
+          - printenv
+ 
+    - name: step_2
+      type: Bash
+      configuration:
+        inputSteps:
+          - name: step_1
+      execution:
+        onExecute:
+          - printenv
+ 
+    - name: step_3
+      type: Bash
+      configuration:
+        inputSteps:
+          - name: step_1
+      execution:
+        onExecute:
+          - printenv
+ 
+    - name: step_4
+      type: Bash
+      configuration:
+        inputSteps:
+          - name: step_2
+          - name: step_3
+      execution:
+        onExecute:
+          - printenv
